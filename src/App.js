@@ -1,24 +1,22 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
+import Thumbnails  from './Thumbnails';
 import './App.css';
 
+const items = [1,2,3,4].map(item => ({
+  title: `Hello I am Item #${item}`,
+  number: `Obviously my number is #${item}`,
+}));
+
 function App() {
+  const onItemClick = (index)=>{
+    setSelected(index);
+  }
+  const [ selected,setSelected ] = useState();
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+      <Thumbnails inputArray={items} onItemClick={onItemClick} selected={0}/>
     </div>
   );
 }
